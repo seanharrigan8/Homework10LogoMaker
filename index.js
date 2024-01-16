@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const { Circle, Square, Triangle } = require("./lib/shapes");
+const path = require("path");
 
 inquirer
   .prompt([
@@ -82,23 +83,23 @@ inquirer
     let shape;
     switch (answers.shape) {
       case "triangle":
-        shape = new Triangle(answers.shapeColor);
+        shape = new Triangle(answers.shapeColor, answers.strokeColor);
         break;
       case "circle":
-        shape = new Circle(answers.shapeColor);
+        shape = new Circle(answers.shapeColor, answers.strokeColor);
         break;
       case "square":
-        shape = new Square(answers.shapeColor);
+        shape = new Square(answers.shapeColor,answers.strokeColor);
         break;
       default:
         console.log("Invalid shape. Please try again.;");
         return;
     }
-    shape.setColor(answers.shapeColor);
+    // shape.setColor(answers.shapeColor);
 
     const svg = shape.render();
 
-    fs.writeFile("logo.svg", svg, (err) => {
+    fs.writeFile(path.join('Examples', 'logo.svg'), svg, (err) => {
       if (err) throw err;
       console.log("generated logo.svg and saved! congratulations!");
     });
