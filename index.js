@@ -2,6 +2,7 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const { Circle, Square, Triangle } = require("./lib/shapes");
 const path = require("path");
+const { JSDOM } = require("jsdom");
 
 inquirer
   .prompt([
@@ -83,13 +84,13 @@ inquirer
     let shape;
     switch (answers.shape) {
       case "triangle":
-        shape = new Triangle(answers.shapeColor, answers.strokeColor);
+        shape = new Triangle(answers.shapeColor, answers.text, answers.strokeColor, answers.textColor);
         break;
       case "circle":
-        shape = new Circle(answers.shapeColor, answers.strokeColor);
+        shape = new Circle(answers.shapeColor, answers.text,answers.strokeColor, answers.textColor);
         break;
       case "square":
-        shape = new Square(answers.shapeColor,answers.strokeColor);
+        shape = new Square(answers.shapeColor, answers.text, answers.strokeColor, answers.textColor);
         break;
       default:
         console.log("Invalid shape. Please try again.;");
@@ -98,6 +99,7 @@ inquirer
     // shape.setColor(answers.shapeColor);
 
     const svg = shape.render();
+////write my new images to the example folder but change the file name each time like example1, example2//
 
     fs.writeFile(path.join('Examples', 'logo.svg'), svg, (err) => {
       if (err) throw err;
