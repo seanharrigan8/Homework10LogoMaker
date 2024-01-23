@@ -25,7 +25,7 @@ Users must install jest and npm
 Run index.js in the terminal and answer the prompts. A logo will be created and saved
 
 ## Video Walkthrough
-LogoMaker Harrigan.mp4
+[LogoMaker Harrigan.mp4](https://watch.screencastify.com/v/kmE7m3AXiqYKVmLEAHXR)
 
 ## Contribution
 
